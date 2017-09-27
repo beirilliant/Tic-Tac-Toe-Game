@@ -1,5 +1,9 @@
-    var play;
+    var player;
     $(".form-check-input").click(function() {
-        play = $(this).val();
+        player = $(this).val();
         $("#startMessage").css("display","none");
+    });
+
+    $(".cell").click(function() {
+        $(this).html(player);
     });
