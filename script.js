@@ -13,10 +13,14 @@
     });
 
     $(".cell").click(function() {
-        $(this).html(huPlayer);
         cellId = $(this).attr("id");
-        takeSpot(parseInt(cellId));
-        coMove();
+        if ($.inArray(parseInt(cellId), boardArray) == -1) {
+            return
+        } else {
+            $(this).html(huPlayer);      
+            takeSpot(parseInt(cellId));
+            coMove();
+        }
     });
 
     function takeSpot(spot) {
