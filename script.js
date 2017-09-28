@@ -33,7 +33,7 @@
             console.log(huArr);   
             takeSpot(parseInt(cellId));
             winGame();
-            coMove();
+            setTimeout(coMove, 500);
         }
     });
 
@@ -46,24 +46,36 @@
         $("#" + boardArray[randomNum]).html(coPlayer);
         coArr.push(boardArray[randomNum]);
         console.log(coArr);
-        takeSpot(boardArray[randomNum]); 
-        winGame(); 
+        takeSpot(boardArray[randomNum]);
+        winGame();
     }
 
     function winGame() {
         winCombo.forEach(function(combo) {
             if (coArr.length >= 3 && $.inArray(combo[0], coArr) >= 0 && $.inArray(combo[1], coArr) >= 0 && $.inArray(combo[2], coArr) >= 0) {
+                $("#text").css("display","initial");
                 $("#text").html("The computer wins!");
-                startGame();
+                setTimeout(startGame, 2000);
             }
             if (huArr.length >= 3 && $.inArray(combo[0], huArr) >= 0 && $.inArray(combo[1], huArr) >= 0 && $.inArray(combo[2], huArr) >= 0) {
+                $("#text").css("display","initial");
                 $("#text").html("Congratulations! You win!");
-                startGame();
+                setTimeout(startGame, 2000);
             } else if (boardArray.length == 0) {
+                $("#text").css("display","initial");
                 $("#text").html("It is a draw!");
-                startGame();
+                setTimeout(startGame, 2000);
             } else {
                 return
             }
         });
+    }
+
+    function startGame() {
+        $(".cell").html("");
+        boardArray = Array.from(Array(9).keys());
+        huArr = [];
+        coArr = [];
+        $("#text").html("");
+        $("#text").css("display","none");
     }
