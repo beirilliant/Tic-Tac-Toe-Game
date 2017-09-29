@@ -1,3 +1,7 @@
+body {
+    font-family: ;
+    font-size: 120%;
+}
 td  {
     border: 2px solid black;
     height: 100px;
@@ -13,6 +17,7 @@ table {
     margin-left: -155px;
     margin-top: 100px;
     cursor: pointer;
+    z-index: 1;
 }
 
 table tr:first-child td {
@@ -29,4 +34,25 @@ table tr td:first-child {
 
 table tr td:last-child {
     border-right: none;
+}
+
+#startMessage {
+    position: absolute;
+    left: 50%;
+    margin-left: -185px;
+    margin-top: 170px;
+    padding: 20px;
+    z-index: 3;
+    opacity: 0.95;
+}
+
+#text {
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    margin-left: -155px;
+    margin-top: 170px;
+    padding: 40px 10px;
+    z-index: 3;
+    opacity: 0.95;
 }
