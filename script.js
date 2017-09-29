@@ -15,6 +15,7 @@
     ];
     var huArr = [];
     var coArr = [];
+    var endgame = 0;
 
     $(".form-check-input").click(function() {
         huPlayer = $(this).val();
@@ -33,6 +34,9 @@
             console.log(huArr);   
             takeSpot(parseInt(cellId));
             winGame();
+            if (endgame == 1) {
+                boardArray = [];
+            }
             setTimeout(coMove, 500);
         }
     });
@@ -55,15 +59,18 @@
             if (coArr.length >= 3 && $.inArray(combo[0], coArr) >= 0 && $.inArray(combo[1], coArr) >= 0 && $.inArray(combo[2], coArr) >= 0) {
                 $("#text").css("display","initial");
                 $("#text").html("The computer wins!");
+                endgame = 1;
                 setTimeout(startGame, 2000);
             }
             if (huArr.length >= 3 && $.inArray(combo[0], huArr) >= 0 && $.inArray(combo[1], huArr) >= 0 && $.inArray(combo[2], huArr) >= 0) {
                 $("#text").css("display","initial");
                 $("#text").html("Congratulations! You win!");
+                endgame = 1;
                 setTimeout(startGame, 2000);
-            } else if (boardArray.length == 0) {
+            } else if (coArr.length + huArr.length == 9 && boardArray.length == 0) {
                 $("#text").css("display","initial");
                 $("#text").html("It is a draw!");
+                endgame = 1;
                 setTimeout(startGame, 2000);
             } else {
                 return
@@ -78,4 +85,5 @@
         coArr = [];
         $("#text").html("");
         $("#text").css("display","none");
+        endgame = 0;
     }
