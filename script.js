@@ -17,6 +17,7 @@
     var coArr = [];
     var end = 0;
     var message = "";
+    var drawCount = 0;
 
     $(".form-check-input").click(function() {
         huPlayer = $(this).val();
@@ -67,19 +68,22 @@
                 message = "Oh no! The computer wins!";
                 $("#text").removeClass("text-success text-warning").addClass("text-danger");
                 endGame();
-            }
-            if (huArr.length >= 3 && $.inArray(combo[0], huArr) >= 0 && $.inArray(combo[1], huArr) >= 0 && $.inArray(combo[2], huArr) >= 0) {
+            } else if (huArr.length >= 3 && $.inArray(combo[0], huArr) >= 0 && $.inArray(combo[1], huArr) >= 0 && $.inArray(combo[2], huArr) >= 0) {
                 message = "Congratulations! You win!";
                 $("#text").removeClass("text-danger text-warning").addClass("text-success");
                 endGame();
             } else if (coArr.length + huArr.length == 9 && boardArray.length == 0) {
-                message = "It is a draw!";
-                $("#text").removeClass("text-danger text-success").addClass("text-warning");
-                endGame();
-            } else {
-                return
+                if ($.inArray(combo[0], huArr) == -1 || $.inArray(combo[1], huArr) == -1 || $.inArray(combo[2], huArr) == -1) {
+                drawCount++;
+                }
             }
         });
+
+        if (drawCount == 8) {
+            message = "It is a draw!";
+            $("#text").removeClass("text-danger text-success").addClass("text-warning");
+            endGame();
+        }
     }
 
     function endGame() {
@@ -89,6 +93,7 @@
         boardArray = [];
         huArr = [];
         coArr = [];
+        drawCount = 0;
         setTimeout(startGame, 2000);
     }
 
