@@ -66,10 +66,16 @@
         winCombo.forEach(function(combo) {
             if (coArr.length >= 3 && $.inArray(combo[0], coArr) >= 0 && $.inArray(combo[1], coArr) >= 0 && $.inArray(combo[2], coArr) >= 0) {
                 message = "Oh no! The computer wins!";
+                combo.forEach(function(item) {
+                    $("#" + item).addClass("bg-danger");
+                });
                 $("#text").removeClass("text-success text-warning").addClass("text-danger");
                 endGame();
             } else if (huArr.length >= 3 && $.inArray(combo[0], huArr) >= 0 && $.inArray(combo[1], huArr) >= 0 && $.inArray(combo[2], huArr) >= 0) {
                 message = "Congratulations! You win!";
+                combo.forEach(function(item) {
+                    $("#" + item).addClass("bg-success");
+                });
                 $("#text").removeClass("text-danger text-warning").addClass("text-success");
                 endGame();
             } else if (coArr.length + huArr.length == 9 && boardArray.length == 0) {
@@ -82,6 +88,7 @@
         if (drawCount == 8) {
             message = "It is a draw!";
             $("#text").removeClass("text-danger text-success").addClass("text-warning");
+            $(".cell").addClass("bg-warning");
             endGame();
         }
     }
@@ -102,6 +109,7 @@
         boardArray = Array.from(Array(9).keys());
         $("#text").html("");
         $("#text").css("display","none");
+        $(".cell").removeClass("bg-warning bg-success bg-danger");
         end = 0;
         message = "";
     }
