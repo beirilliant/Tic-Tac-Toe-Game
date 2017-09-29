@@ -1,6 +1,6 @@
 body {
-    font-family: ;
-    font-size: 120%;
+    font-family: 'Arima Madurai', cursive;
+    font-size: 150%;
 }
 td  {
     border: 2px solid black;
@@ -39,7 +39,7 @@ table tr td:last-child {
 #startMessage {
     position: absolute;
     left: 50%;
-    margin-left: -185px;
+    margin-left: -210px;
     margin-top: 170px;
     padding: 20px;
     z-index: 3;
@@ -47,10 +47,10 @@ table tr td:last-child {
 }
 
 #text {
-    width: 300px;
+    width: 350px;
     position: absolute;
     left: 50%;
-    margin-left: -155px;
+    margin-left: -180px;
     margin-top: 170px;
     padding: 40px 10px;
     z-index: 3;
