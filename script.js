@@ -18,6 +18,7 @@
     var end = 0;
     var message = "";
     var drawCount = 0;
+    var isCoTurn = 0;
 
     $(".form-check-input").click(function() {
         huPlayer = $(this).val();
@@ -28,25 +29,26 @@
     });
 
     $(".cell").click(function() {
-        if (end === 1) {
+        if (end === 1 || isCoTurn === 1) {
             return
         } else {
-        cellId = $(this).attr("id");
-        if ($.inArray(parseInt(cellId), boardArray) === -1) {
-            return
-        } else {
-            $(this).html(huPlayer);  
-            huArr.push(parseInt(cellId));
-            console.log(huArr);   
-            takeSpot(parseInt(cellId));
-            winGame();
-            if (end === 1) {
+            cellId = $(this).attr("id");
+            if ($.inArray(parseInt(cellId), boardArray) === -1) {
                 return
             } else {
-            setTimeout(coMove, 500);
+                $(this).html(huPlayer);  
+                huArr.push(parseInt(cellId));
+                console.log(huArr);   
+                takeSpot(parseInt(cellId));
+                winGame();
+                if (end === 1) {
+                    return
+                } else {
+                    isCoTurn = 1;
+                    setTimeout(coMove, 500);
+                }
             }
         }
-    }
     });
 
     function takeSpot(spot) {
@@ -60,6 +62,7 @@
         console.log(coArr);
         takeSpot(boardArray[randomNum]);
         winGame();
+        isCoTurn = 0;
     }
 
     function winGame() {
