@@ -90,7 +90,7 @@
 
         if (drawCount == 8) {
             message = "It is a draw!";
-            $("#text").removeClass("text-danger text-success").addClass("text-warning");
+            $("#text").removeClass("text-danger text-success").addClass("text-secondary");
             $(".cell").addClass("bg-warning");
             endGame();
         }
